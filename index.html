@@ -14,7 +14,8 @@
         <link rel="stylesheet" type="text/css" href="css/leaflet.groupedlayercontrol.min.css" />
         <link rel="stylesheet" type="text/css" href="css/leaflet.groupedlayercontrol2.min.css" />		
         <link rel="stylesheet" href="css/jquery-ui-1.10.3.custom.min.css">
-		<link rel="stylesheet" href="css/Leaflet.PolylineMeasure.css">	 
+		<link rel="stylesheet" href="css/Leaflet.PolylineMeasure.css">	
+		<link rel="stylesheet" href="css/legend.css">		
         <style type="text/css">
         html, body{
             width: 100%;
@@ -31,8 +32,10 @@
         <title>GIFT City</title>
     </head>
     <body oncontextmenu = "return false">
-        <div id="map">
-        </div>
+	
+
+
+<div id="map"></div>
         <script src="js/web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
@@ -48,7 +51,8 @@
         <script src="js/L.Control.Locate.min.js"></script>
         <script src="js/Control.Opacity.js"></script>
         <script src="js/jquery-1.9.1.js"></script>
-        <script src="js/jquery-ui-1.10.3.custom.min.js"></script>			
+        <script src="js/jquery-ui-1.10.3.custom.min.js"></script>	
+        <script src="js/legend.js"></script>		
     <!--    <script src="js/leaflet-measure.js"></script>-->			
 	<!--	<script src="data/Utility_Tunnel/Staircase_0.js"></script>
         <script src="data/Utility_Tunnel/RMU_ROOM_1.js"></script>
@@ -3196,6 +3200,23 @@ function pop_Roads_F_v1_0(feature, layer) {
 		
        <!-- L.control.layers(baseMaps,{'<img src="legend/GIFT_BOUNDARY_2.png" /> GIFT City Boundary': layer_GIFT_BOUNDARY_2,'&emsp;&ensp;Block Boundary<br /><table><tr><td style="text-align: center;">&emsp;&ensp;&emsp;&ensp;<img src="legend/BLOCK_BOUNDARY_1_10.png" /></td><td>Zone-1</td></tr><tr><td style="text-align: center;">&emsp;&ensp;&emsp;&ensp;<img src="legend/BLOCK_BOUNDARY_1_21.png" /></td><td>Zone-2</td></tr><tr><td style="text-align: center;">&emsp;&ensp;&emsp;&ensp;<img src="legend/BLOCK_BOUNDARY_1_32.png" /></td><td>Zone-3</td></tr><tr><td style="text-align: center;">&emsp;&ensp;&emsp;&ensp;<img src="legend/BLOCK_BOUNDARY_1_43.png" /></td><td>Zone-4</td></tr><tr><td style="text-align: center;">&emsp;&ensp;&emsp;&ensp;<img src="legend/BLOCK_BOUNDARY_1_54.png" /></td><td>Zone-5</td></tr><tr><td style="text-align: center;">&emsp;&ensp;&emsp;&ensp;<img src="legend/BLOCK_BOUNDARY_1_65.png" /></td><td>Zone-6</td></tr><tr><td style="text-align: center;">&emsp;&ensp;&emsp;&ensp;<img src="legend/BLOCK_BOUNDARY_1_76.png" /></td><td>Zone-7</td></tr></table>': layer_BLOCK_BOUNDARY_1,'<img src="legend/earth.png" /> Basemap': layer_GOOGLESATELLITE_0,},{collapse:true}).addTo(map);
       --> 
+
+/*Legend specific*/
+var legend = L.control({ position: "bottomleft" });
+
+legend.onAdd = function(map) {
+  var div = L.DomUtil.create("div", "legend");
+  div.innerHTML += "<h4>Legend</h4>";
+  div.innerHTML += '<i style="background: #E8E6E0"></i><span>Exisitng Roads</span><br>';
+  div.innerHTML += '<i class="icon" style="background-image: url(https://d30y9cdsu7xlg0.cloudfront.net/png/194515-200.png);background-repeat: no-repeat;"></i><span>Proposed Roads</span><br>';
+  div.innerHTML += '<i style="background: #1ca3ec"></i><span>Waterbody</span><br>'; 
+  div.innerHTML += '<i style="background: #FF69B4"></i><span>Possession Boundary</span><br>'; 
+
+
+  return div;
+};
+
+legend.addTo(map);
 
 
 		
