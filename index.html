@@ -38,6 +38,7 @@
 <div id="map"></div>
         <script src="js/web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
+		<script src="js/multi-style-layer.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
         <script src="js/leaflet.pattern.js"></script>
         <script src="js/leaflet-hash.js"></script>
@@ -102,9 +103,10 @@
         <script src="data/ALLOTED_BUILDINGS_4.js"></script>
         <script src="data/UNDERCONSTRUCTION_BUILDINGS_5.js"></script>
         <script src="data/OPERATIONAL_BUILDINGS_6.js"></script>
-				<script src="data/Roads_F_MEDIAN_v1_0.js"></script>
+		<script src="data/Roads_F_MEDIAN_v1_0.js"></script>
 		<script src="data/Roads_F_v1_0.js"></script>
-		        <script src="data/Buildings_Labellings_0.js"></script>
+		<script src="data/Buildings_Labellings_0.js"></script>
+		<script src="data/Logistic_Area_0.js"></script>
 
 
         <script type="text/JavaScript">
@@ -2404,7 +2406,7 @@
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['Labe_No'] !== null?String('<div style="color: #000000; font-size: 7pt; font-family: \'Times New Roman\', sans-serif;">' + layer.feature.properties['Labe_No']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Buildings_Labellings_0'});
+            layer.bindTooltip((layer.feature.properties['Labe_No'] !== null?String('<div style="color: #000000; font-size: 7pt; font-weight: bold; text-align: center; font-family: \'Times New Roman\', sans-serif;">' + layer.feature.properties['Labe_No']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Buildings_Labellings_0'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
@@ -2424,6 +2426,164 @@
 
 <!--End building lebelling-->
 
+
+
+<!--Logistic area-->
+        function pop_Logistic_Area_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Type : </strong>' + (feature.properties['Type'] !== null ? autolinker.link(feature.properties['Type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Issue Date : </strong>' + (feature.properties['Issue_Date'] !== null ? autolinker.link(feature.properties['Issue_Date'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        var pattern_Logistic_Area_0_0 = new L.StripePattern({
+            weight: 0.3,
+            spaceWeight: 2.0,
+            color: '#06fc06',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 315
+        });
+        pattern_Logistic_Area_0_0.addTo(map);
+        var pattern_Logistic_Area_0_0 = new L.StripePattern({
+            weight: 0.3,
+            spaceWeight: 2.0,
+            color: '#f69206',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 225
+        });
+        pattern_Logistic_Area_0_0.addTo(map);
+        var pattern_Logistic_Area_0_0 = new L.StripePattern({
+            weight: 0.3,
+            spaceWeight: 2.0,
+            color: '#f90606',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 315
+        });
+        pattern_Logistic_Area_0_0.addTo(map);
+        var pattern_Logistic_Area_0_0 = new L.StripePattern({
+            weight: 0.3,
+            spaceWeight: 2.0,
+            color: '#06fc06',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 315
+        });
+        pattern_Logistic_Area_0_0.addTo(map);
+        var pattern_Logistic_Area_0_0 = new L.StripePattern({
+            weight: 0.3,
+            spaceWeight: 2.0,
+            color: '#f69206',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 225
+        });
+        pattern_Logistic_Area_0_0.addTo(map);
+        var pattern_Logistic_Area_0_0 = new L.StripePattern({
+            weight: 0.3,
+            spaceWeight: 2.0,
+            color: '#f90606',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 315
+        });
+        pattern_Logistic_Area_0_0.addTo(map);
+        function style_Logistic_Area_0_0(feature) {
+            switch(String(feature.properties['Type'])) {
+                case 'Barricating':
+                    return {
+                pane: 'pane_Logistic_Area_0',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_Logistic_Area_0_0,
+                interactive: true,
+            }
+                    break;
+                case 'IA_Logistic':
+                    return {
+                pane: 'pane_Logistic_Area_0',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_Logistic_Area_0_0,
+                interactive: true,
+            }
+                    break;
+                case 'Logistic Area':
+                    return {
+                pane: 'pane_Logistic_Area_0',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_Logistic_Area_0_0,
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        function style_Logistic_Area_0_1(feature) {
+            switch(String(feature.properties['Type'])) {
+                case 'Barricating':
+                    return {
+                pane: 'pane_Logistic_Area_0',
+                opacity: 1,
+                color: 'rgba(30,145,51,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'IA_Logistic':
+                    return {
+                pane: 'pane_Logistic_Area_0',
+                opacity: 1,
+                color: 'rgba(190,120,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'Logistic Area':
+                    return {
+                pane: 'pane_Logistic_Area_0',
+                opacity: 1,
+                color: 'rgba(190,12,12,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_Logistic_Area_0');
+        map.getPane('pane_Logistic_Area_0').style.zIndex = 400;
+        map.getPane('pane_Logistic_Area_0').style['mix-blend-mode'] = 'normal';
+        var layer_Logistic_Area_0 = new L.geoJson.multiStyle(json_Logistic_Area_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Logistic_Area_0',
+            layerName: 'layer_Logistic_Area_0',
+            pane: 'pane_Logistic_Area_0',
+            onEachFeature: pop_Logistic_Area_0,
+            styles: [style_Logistic_Area_0_0,style_Logistic_Area_0_1,]
+        });
+        bounds_group.addLayer(layer_Logistic_Area_0);
+
+<!--End Logistic Area-->
 		
 <!--OPERATIONAL BUILDINGS-->
      function pop_OPERATIONAL_BUILDINGS_6(feature, layer) {
@@ -3425,7 +3585,7 @@ legend.addTo(map);
 		
 		var groupedLayers = {
             '<b>GIFT Boundary</b>': {
-                'GIFT Boundary': layer_GIFT_BOUNDARY_2,
+                'GIFT Boundary': layer_GIFT_BOUNDARY_2,			
                 'Block Boundary': layer_BLOCK_BOUNDARY_1
 				
             },
@@ -3436,6 +3596,9 @@ legend.addTo(map);
 				'<img src="legend/icon_alloted.jpg" /> OPERATIONAL BUILDINGS': layer_OPERATIONAL_BUILDINGS_6,
 				'<img src="legend/icon_underconstruction.jpg" /> UNDER-CONSTRUCTION BUILDINGS': layer_UNDERCONSTRUCTION_BUILDINGS_5,
 				'<img src="legend/MP.png" /> BUILDINGS UNDER PLANNING': layer_ALLOTED_BUILDINGS_4
+            },
+			 '<b>Logistic Area</b>': {
+				'<img src="legend/container.png" /> Logistic/Barricating Area': layer_Logistic_Area_0
             },
             '<b>Satellite Image</b>': {
                 '<img src="legend/Google_earth.png" />Google Satellite': layer_GOOGLESATELLITE_0,
