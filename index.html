@@ -2437,6 +2437,9 @@
                     <tr>\
                         <td colspan="2"><strong>Issue Date : </strong>' + (feature.properties['Issue_Date'] !== null ? autolinker.link(feature.properties['Issue_Date'].toLocaleString()) : '') + '</td>\
                     </tr>\
+					<tr>\
+                        <td colspan="2"><strong>Project : </strong>' + (feature.properties['Project'] !== null ? autolinker.link(feature.properties['Project'].toLocaleString()) : '') + '</td>\
+                    </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -2524,6 +2527,16 @@
                 interactive: true,
             }
                     break;
+					case 'RMC Plant':
+                    return {
+                pane: 'pane_Logistic_Area_0',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_Logistic_Area_0_0,
+                interactive: true,
+            }
+                    break;
+					
             }
         }
         function style_Logistic_Area_0_1(feature) {
@@ -2559,6 +2572,19 @@
                 pane: 'pane_Logistic_Area_0',
                 opacity: 1,
                 color: 'rgba(190,12,12,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+					case 'RMC Plant':
+                    return {
+                pane: 'pane_Logistic_Area_0',
+                opacity: 1,
+                color: 'rgba(50,50,50,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -3598,7 +3624,7 @@ legend.addTo(map);
 				'<img src="legend/MP.png" /> BUILDINGS UNDER PLANNING': layer_ALLOTED_BUILDINGS_4
             },
 			 '<b>Logistic Area</b>': {
-				'<img src="legend/container.png" /> Logistic/Barricating Area': layer_Logistic_Area_0
+				'<img src="legend/container.png" /> Logistic/Barricating/RMC Area': layer_Logistic_Area_0
             },
             '<b>Satellite Image</b>': {
                 '<img src="legend/Google_earth.png" />Google Satellite': layer_GOOGLESATELLITE_0,
@@ -3642,5 +3668,5 @@ legend.addTo(map);
 		
 
         </script>
-    </body>
+ </body>
 </html>
