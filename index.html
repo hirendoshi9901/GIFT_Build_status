@@ -15,10 +15,12 @@
         <link rel="stylesheet" type="text/css" href="css/leaflet.groupedlayercontrol2.min.css" />		
         <link rel="stylesheet" href="css/jquery-ui-1.10.3.custom.min.css">
 		<link rel="stylesheet" href="css/Leaflet.PolylineMeasure.css">	
-		<link rel="stylesheet" href="css/legend.css">	
-	    	<link rel="icon" type="images/png" href="./favicon.png">
-	    	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
-		<link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/legend.css">		
+				 <link rel="icon" type="images/png" href="./favicon.png">
+				 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+				 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+				 
+
         <style type="text/css">
         html, body{
             width: 100%;
@@ -35,9 +37,8 @@
         <title>GIFT City</title>
     </head>
     <body oncontextmenu = "return false" class="p-3 m-0 border-0 bd-example">
-
-<!-- Progress Bar Code -->
-   <!--
+	<!-- Progress Bar Code -->
+ <!--
 <div class="progress">
   <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-label="Segment one" style="width: 16%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" data-placement="right" data-toggle="tooltip" title="Operational Buildings">16%</div>
   <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Segment two" style="width: 7%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" data-placement="right" data-toggle="tooltip" title="Under-construction Buildings">7%</div>
@@ -45,9 +46,9 @@
   <div class="progress-bar progress-bar-striped bg-secondary progress-bar-animated" role="progressbar" aria-label="Segment three" style="width: 55%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" data-placement="right" data-toggle="tooltip" title="">55%</div>
  
 </div>
-   -->  
+  -->  
 <!-- End Progress Bar Code -->
-	  
+
 
 <div id="map"></div>
         <script src="js/web_expressions.js"></script>
@@ -67,7 +68,7 @@
         <script src="js/Control.Opacity.js"></script>
         <script src="js/jquery-1.9.1.js"></script>
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>	
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/legend.js"></script>		
     <!--    <script src="js/leaflet-measure.js"></script>-->			
 	<!--	<script src="data/Utility_Tunnel/Staircase_0.js"></script>
@@ -122,12 +123,16 @@
 		<script src="data/Roads_F_v1_0.js"></script>
 		<script src="data/Buildings_Labellings_0.js"></script>
 		<script src="data/Logistic_Area_0.js"></script>
+		<script src="data/BUILDINGS_TO_BE_ALLOT_0.js"></script>
+
+
 
 
         <script type="text/JavaScript">
         var map = L.map('map', {
         zoomControl:true, maxZoom:28, minZoom:1
         }).fitBounds([[23.14,72.63],[23.19,72.73]]);
+        var hash = new L.Hash(map);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://giftgujarat.in" target="_blank">GIFT City</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -2873,7 +2878,94 @@
 
 <!--END BUILDING UNDER PLANNING-->
 
+<!--VACANT LAND IN GIFT-->
+       function pop_BUILDINGS_TO_BE_ALLOT_0(feature, layer) {
+           
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BLOCK'] !== null ? autolinker.link(feature.properties['BLOCK'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LANDUSE'] !== null ? autolinker.link(feature.properties['LANDUSE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AREA'] !== null ? autolinker.link(feature.properties['AREA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AREA_TYPE'] !== null ? autolinker.link(feature.properties['AREA_TYPE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BULD_NO'] !== null ? autolinker.link(feature.properties['BULD_NO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ZONE'] !== null ? autolinker.link(feature.properties['ZONE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FTP_TYPE'] !== null ? autolinker.link(feature.properties['FTP_TYPE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Height'] !== null ? autolinker.link(feature.properties['Height'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Status'] !== null ? autolinker.link(feature.properties['Status'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Height_F'] !== null ? autolinker.link(feature.properties['Height_F'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
 
+        function style_BUILDINGS_TO_BE_ALLOT_0_0(feature) {
+            switch(String(feature.properties['FTP_TYPE'])) {
+                case 'Basement':
+                    return {
+                pane: 'pane_BUILDINGS_TO_BE_ALLOT_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(197,207,51,0.0)',
+                interactive: false,
+            }
+                    break;
+                case 'Footprint':
+                    return {
+                pane: 'pane_BUILDINGS_TO_BE_ALLOT_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(197,197,197,1.0)',
+                interactive: false,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_BUILDINGS_TO_BE_ALLOT_0');
+        map.getPane('pane_BUILDINGS_TO_BE_ALLOT_0').style.zIndex = 400;
+        map.getPane('pane_BUILDINGS_TO_BE_ALLOT_0').style['mix-blend-mode'] = 'normal';
+        var layer_BUILDINGS_TO_BE_ALLOT_0 = new L.geoJson(json_BUILDINGS_TO_BE_ALLOT_0, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_BUILDINGS_TO_BE_ALLOT_0',
+            layerName: 'layer_BUILDINGS_TO_BE_ALLOT_0',
+            pane: 'pane_BUILDINGS_TO_BE_ALLOT_0',
+            onEachFeature: pop_BUILDINGS_TO_BE_ALLOT_0,
+            style: style_BUILDINGS_TO_BE_ALLOT_0_0,
+        });
+        bounds_group.addLayer(layer_BUILDINGS_TO_BE_ALLOT_0);
+
+
+<!--END VACANT LAND IN GIFT-->
 
 <!--EXISTING AND PROPOSED ROADS-->
 function pop_Roads_F_v1_0(feature, layer) {
@@ -3636,7 +3728,8 @@ legend.addTo(map);
           <!--     '<img src="legend/MP.png" /> Master Plan': layer_MASTER_PLAN_V5_Height_0,-->
 				'<img src="legend/icon_alloted.jpg" /> OPERATIONAL BUILDINGS': layer_OPERATIONAL_BUILDINGS_6,
 				'<img src="legend/icon_underconstruction.jpg" /> UNDER-CONSTRUCTION BUILDINGS': layer_UNDERCONSTRUCTION_BUILDINGS_5,
-				'<img src="legend/MP.png" /> BUILDINGS UNDER PLANNING': layer_ALLOTED_BUILDINGS_4
+				'<img src="legend/MP.png" /> BUILDINGS UNDER PLANNING': layer_ALLOTED_BUILDINGS_4,
+				'<img src="legend/land.jpg" /> AVAILABLE LAND IN GIFT': layer_BUILDINGS_TO_BE_ALLOT_0
             },
 			 '<b>Logistic Area</b>': {
 				'<img src="legend/container.png" /> Logistic/Barricating/RMC Area': layer_Logistic_Area_0
